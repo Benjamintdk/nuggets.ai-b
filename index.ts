@@ -11,8 +11,7 @@ app.get('/', (_req, res) => {
     const python = spawn('python', ['prediction.py']);
     // collect data from script
     python.stdout.on('data', (data) => {
-     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-     dataToSend = data.toString();
+     dataToSend = String(data);
     });
     // in close event we are sure that stream from child process is closed
     python.on('close', () => {
