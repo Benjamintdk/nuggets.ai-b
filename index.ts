@@ -7,8 +7,9 @@ const PORT = 3000;
 
 app.get('/', (_req, res) => {
     let dataToSend: unknown;
+    const words = ['known', 'complete', 'link'];
     // spawn new child process to call the python script
-    const python = spawn('python', ['prediction.py']);
+    const python = spawn('python', ['prediction.py', 'submit', ...words]);
     // collect data from script
     python.stdout.on('data', (data) => {
      dataToSend = String(data);
