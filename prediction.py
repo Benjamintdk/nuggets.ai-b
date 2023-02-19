@@ -1,10 +1,12 @@
 from scipy.spatial import distance
 import openai
 import numpy as np
+from dotenv import load_dotenv
+import os
 import sys
 
-# need to obscure this and add it to some sort of secrets file
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
 def get_cosine_similarity(embedding_1: np.ndarray, embedding_2: np.ndarray) -> float:
@@ -28,4 +30,4 @@ if __name__ == "__main__":
             min_dist = cur_dist
             min_word = word
 
-    print(f"{min_word}: {min_dist}")
+    print(f"Did you mean to click: {min_word}?")
